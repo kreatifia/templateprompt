@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formula Prompt untuk Bereksperimen dengan AI dan Dapatkan Hasil Terbaik</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#1a1a2e;--ink-soft:#4a4a6a;--ink-muted:#8888a8;
+  --page:#fafaf8;--surface:#f2f1ef;--line:#e0dfd8;
+  --accent:#5c4fd6;--accent-light:#eeecfd;--accent-mid:#7c6fee;
+  --green:#1a7a52;--green-light:#e8f5ee;
+  --red:#b83232;--red-light:#fdeaea;
+  --amber:#956010;--amber-light:#fdf3e0;
+  --teal:#0e6e6e;--teal-light:#e3f5f5;
+  --coral:#c24a2a;--coral-light:#fdeee9;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Plus Jakarta Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--page);color:var(--ink);font-size:16px;line-height:1.7;}
+
+/* NAV */
+nav{position:sticky;top:0;background:rgba(250,250,248,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:100;padding:0 2rem;}
+.nav-inner{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--accent);letter-spacing:-0.02em;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{font-size:13px;color:var(--ink-soft);text-decoration:none;padding:6px 11px;border-radius:6px;transition:color .15s,background .15s;}
+.nav-links a:hover{color:var(--accent);background:var(--accent-light);}
+
+/* DISCLAIMER */
+.disclaimer-bar{background:#fffbea;border-bottom:1px solid #f0e6b0;padding:1.25rem 2rem;}
+.disclaimer-inner{max-width:820px;margin:0 auto;display:flex;gap:1.25rem;align-items:flex-start;flex-wrap:wrap;}
+.disclaimer-inner p{font-size:13.5px;color:#5a4a00;line-height:1.75;margin:0 0 10px;}
+.btn-wa{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:#fff;font-size:13px;font-weight:700;padding:8px 18px;border-radius:99px;text-decoration:none;transition:opacity .15s;}
+.btn-wa:hover{opacity:.88;}
+
+/* COVER */
+.cover{min-height:90vh;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--line);}
+.cover-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(92,79,214,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(14,110,110,.06) 0%,transparent 60%);pointer-events:none;}
+.cover-content{max-width:640px;text-align:center;position:relative;z-index:1;}
+.cover-eyebrow{display:inline-block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);background:var(--accent-light);padding:5px 14px;border-radius:99px;margin-bottom:2rem;}
+.cover-title{font-family:var(--font-display);font-size:clamp(34px,6vw,58px);font-weight:700;line-height:1.1;letter-spacing:-.03em;color:var(--ink);margin-bottom:1.25rem;}
+.cover-title em{font-style:italic;color:var(--accent);}
+.cover-subtitle{font-size:17px;color:var(--ink-soft);line-height:1.6;margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;}
+.cover-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.badge{font-size:13px;color:var(--ink-soft);background:var(--surface);border:1px solid var(--line);padding:5px 14px;border-radius:99px;}
+.craft-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:2rem;}
+.craft-letter{width:52px;height:52px;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1;}
+.craft-sub{font-family:var(--font-body);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-top:3px;}
+
+/* SECTIONS */
+.section{max-width:820px;margin:0 auto;padding:5rem 2rem;border-bottom:1px solid var(--line);}
+.section:last-child{border-bottom:none;}
+.section-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:.5rem;}
+.section-title{font-family:var(--font-display);font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.025em;line-height:1.2;color:var(--ink);margin-bottom:1rem;}
+.section-lead{font-size:16px;color:var(--ink-soft);max-width:580px;margin-bottom:2.5rem;line-height:1.75;}
+h3{font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:2rem 0 .75rem;}
+p{margin-bottom:1rem;color:var(--ink-soft);line-height:1.75;}
+p:last-child{margin-bottom:0;}
+.divider{width:40px;height:3px;background:var(--accent);border-radius:99px;margin:1rem 0 1.5rem;}
+
+/* MINDSET */
+.mindset-card{background:var(--accent-light);border:1px solid rgba(92,79,214,.18);border-left:4px solid var(--accent);border-radius:10px;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+.mindset-card p{color:var(--ink);margin:0;}
+
+/* INFO BOX */
+.info-box{border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0;}
+.info-box p{font-size:14px;margin:0;}
+.info-box.teal{background:var(--teal-light);border-left:3px solid var(--teal);}
+.info-box.teal p{color:var(--teal);}
+.info-box.amber{background:var(--amber-light);border-left:3px solid var(--amber);}
+.info-box.amber p{color:var(--amber);}
+
+/* CRAFT GRID */
+.craft-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:2rem;}
+.craft-card{background:white;border:1px solid var(--line);border-radius:14px;padding:1.25rem 1.5rem;}
+.craft-card-letter{font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:6px;}
+.craft-card-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:8px;}
+.craft-card p{font-size:14px;color:var(--ink-soft);margin:0;line-height:1.6;}
+.craft-card.q-card{border:2px solid var(--accent);background:var(--accent-light);}
+.craft-card.q-card .craft-card-letter{color:var(--accent);}
+
+/* COMPARISON */
+.comparison{margin:2rem 0;border-radius:14px;overflow:hidden;border:1px solid var(--line);}
+.comparison-header{background:var(--surface);padding:10px 20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);border-bottom:1px solid var(--line);}
+.comparison-body{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:600px){.comparison-body{grid-template-columns:1fr;}}
+.comp-side{padding:1.25rem 1.5rem;}
+.comp-side:first-child{border-right:1px solid var(--line);}
+.comp-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:99px;margin-bottom:12px;}
+.comp-label::before{content:'✗';font-size:12px;}
+.comp-label.bad{background:var(--red-light);color:var(--red);}
+.comp-label.good{background:var(--green-light);color:var(--green);}
+.comp-label.good::before{content:'✓';}
+.prompt-box{background:#f7f6f4;border-radius:8px;padding:12px 14px;font-size:13.5px;font-family:'Courier New',monospace;line-height:1.65;color:var(--ink);margin-bottom:12px;border:1px solid var(--line);}
+.prompt-box.good-box{background:var(--green-light);border-color:rgba(26,122,82,.2);}
+.prompt-box.bad-box{background:var(--red-light);border-color:rgba(184,50,50,.2);}
+.q-line{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(92,79,214,.3);color:var(--accent);font-style:italic;font-size:13px;}
+.comp-analysis{font-size:13px;color:var(--ink-soft);line-height:1.6;padding-top:10px;border-top:1px solid var(--line);}
+.comp-analysis strong{color:var(--ink);}
+
+/* TECHNIQUE */
+.technique-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:2rem;}
+.technique-card{background:white;border:1px solid var(--line);border-radius:12px;padding:1.25rem;}
+.technique-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:10px;}
+.technique-card h4{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.technique-card p{font-size:13px;color:var(--ink-soft);margin:0;line-height:1.6;}
+
+/* TABS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2rem;border-bottom:1px solid var(--line);padding-bottom:1rem;}
+.tab-btn{font-size:13px;font-weight:500;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:6px 14px;cursor:pointer;transition:all .15s;font-family:var(--font-body);}
+.tab-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);}
+.tab-btn.active{background:var(--accent);color:white;border-color:var(--accent);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* TEMPLATE */
+.template-grid{display:grid;gap:14px;}
+.template-card{background:white;border:1px solid var(--line);border-radius:12px;padding:1.25rem 1.5rem;}
+.template-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:3px 10px;border-radius:99px;margin-bottom:10px;display:inline-block;}
+.template-card h4{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:10px;}
+.template-prompt{background:#f7f6f4;border-radius:8px;padding:12px 14px;font-size:13px;font-family:'Courier New',monospace;line-height:1.7;color:var(--ink);border:1px solid var(--line);}
+.template-prompt .var{background:var(--amber-light);color:var(--amber);border-radius:4px;padding:1px 6px;font-style:italic;}
+.template-prompt .q{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(92,79,214,.3);color:var(--accent);font-style:italic;}
+
+/* PROMPT ACTION BAR */
+.prompt-wrap{position:relative;margin-bottom:12px;}
+.prompt-wrap .prompt-box,.prompt-wrap .template-prompt{margin-bottom:0;}
+.prompt-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;}
+.btn-copy,.btn-chatgpt,.btn-gemini{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:99px;border:none;cursor:pointer;text-decoration:none;font-family:var(--font-body);transition:opacity .15s,transform .1s;white-space:nowrap;}
+.btn-copy:active,.btn-chatgpt:active,.btn-gemini:active{transform:scale(.97);}
+.btn-copy{background:var(--surface);color:var(--ink-soft);border:1px solid var(--line);}
+.btn-copy:hover{background:var(--line);color:var(--ink);}
+.btn-copy.copied{background:var(--green-light);color:var(--green);border-color:rgba(26,122,82,.25);}
+.btn-chatgpt{background:#1a1a1a;color:#fff;}
+.btn-chatgpt:hover{opacity:.85;}
+.btn-gemini{background:#1a6eff;color:#fff;}
+.btn-gemini:hover{opacity:.85;}
+
+/* DRAFT AREA */
+.draft-area{margin-top:10px;}
+.draft-area label{display:block;font-size:12px;font-weight:600;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+.draft-area textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px;font-family:'Courier New',monospace;line-height:1.6;color:var(--ink);background:#fafaf8;resize:vertical;min-height:80px;font-family:var(--font-body);}
+.draft-area textarea:focus{outline:none;border-color:var(--accent);}
+
+/* STEP LIST */
+.step-list{display:flex;flex-direction:column;gap:16px;margin-top:1.5rem;}
+.step-item{display:flex;gap:16px;align-items:flex-start;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--accent);color:white;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-content h4{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.step-content p{font-size:14px;color:var(--ink-soft);margin:0;}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:3rem 2rem;font-size:13px;}
+footer strong{color:white;}
+
+@media(max-width:600px){
+  .nav-links{display:none;}
+  .section{padding:3.5rem 1.25rem;}
+  .cover{padding:4rem 1.25rem 3.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Formula Prompt</span>
+    <ul class="nav-links">
+      <li><a href="#bab1">Dasar</a></li>
+      <li><a href="#bab2">C.R.A.F.T.Q</a></li>
+      <li><a href="#bab3">Teknik</a></li>
+      <li><a href="#bab4">Penggunaan</a></li>
+      <li><a href="#bab5">Iterasi</a></li>
+      <li><a href="#bab6">50 Template</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<div class="disclaimer-bar">
+  <div class="disclaimer-inner">
+    <span style="font-size:20px;flex-shrink:0;margin-top:2px;">📌</span>
+    <div style="flex:1;min-width:240px;">
+      <p><strong style="color:#3d3200;">Disclaimer:</strong> Formula ini disusun dari pengalaman langsung bereksperimen dengan AI. AI tidak menyimpan memori antar sesi, jadi setiap prompt perlu membawa konteks yang cukup. Tujuan panduan ini bukan untuk "melatih" AI secara permanen, tapi untuk melatih pengguna membangun pola komunikasi yang semakin efektif setiap kali berinteraksi dengan AI. Gunakan prompt ini sebagai titik awal percakapan, amati bagaimana AI merespons, dan jadikan itu bahan untuk menyusun prompt yang semakin tajam dan personal.</p>
+    </div>
+  </div>
+</div>
+
+<section class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-content">
+
+    <h1 class="cover-title">Formula Prompt untuk Bereksperimen dengan AI dan <em>Dapatkan Hasil Terbaik</em></h1>
+    <p class="cover-subtitle">Dari nol hingga mahir — pelajari cara berbicara dengan AI sehingga hasilnya selalu tepat sasaran, pertama kali.</p>
+    <div class="cover-badges">
+      <span class="badge">6 Bab</span>
+      <span class="badge">50 Template Siap Pakai</span>
+      <span class="badge">Formula C.R.A.F.T.Q</span>
+      <span class="badge">Editing Gambar & Video</span>
+      <span class="badge">Prompt Karyawan</span>
+    </div>
+    <div class="craft-row">
+      <div class="craft-letter" style="background:#eeecfd;color:#5c4fd6;">C<span class="craft-sub">ontext</span></div>
+      <div class="craft-letter" style="background:#e3f5f5;color:#0e6e6e;">R<span class="craft-sub">ole</span></div>
+      <div class="craft-letter" style="background:#fdeee9;color:#c24a2a;">A<span class="craft-sub">ction</span></div>
+      <div class="craft-letter" style="background:#fdf3e0;color:#956010;">F<span class="craft-sub">ormat</span></div>
+      <div class="craft-letter" style="background:#e8f5ee;color:#1a7a52;">T<span class="craft-sub">one</span></div>
+      <div class="craft-letter" style="background:#eeecfd;color:#5c4fd6;border:2px solid #5c4fd6;">Q<span class="craft-sub">uestion</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BAB 1 -->
+<section class="section" id="bab1">
+  <p class="section-eyebrow">Bab 1</p>
+  <h2 class="section-title">Kenapa Prompt Itu Penting?</h2>
+  <div class="divider"></div>
+  <p class="section-lead">AI hanya bisa memberi jawaban sebaik pertanyaan yang kamu ajukan. Prompt adalah instruksi — dan instruksi yang buruk menghasilkan output yang buruk.</p>
+  <h3>Apa itu prompt?</h3>
+  <p>Prompt adalah teks yang kamu tulis untuk meminta AI melakukan sesuatu. Bisa berupa pertanyaan, perintah, atau deskripsi situasi. AI tidak bisa membaca pikiran — ia hanya bekerja dari kata-kata yang kamu berikan.</p>
+  <div class="mindset-card">
+    <p><strong>Mindset kunci:</strong> Bayangkan kamu menyewa seorang asisten baru yang sangat pintar, tapi baru pertama hari kerja. Ia tidak tahu konteks hidupmu, tidak tahu selera kamu, dan tidak tahu apa yang kamu maksud dengan "yang bagus". Semakin jelas instruksimu, semakin bagus hasilnya.</p>
+  </div>
+  <h3>Perbedaan yang nyata</h3>
+  <div class="comparison">
+    <div class="comparison-header">Contoh perbandingan — Menulis caption Instagram</div>
+    <div class="comparison-body">
+      <div class="comp-side">
+        <span class="comp-label bad">Tidak Detail</span>
+        <div class="prompt-box bad-box">Buatkan caption Instagram untuk foto kopi.</div>
+        <div class="comp-analysis"><strong>Masalah:</strong> AI tidak tahu suasana foto, target audiens, gaya akun, atau tujuan postingan. Hasilnya generik dan tidak khas.</div>
+      </div>
+      <div class="comp-side">
+        <span class="comp-label good">Detail & Terarah</span>
+        <div class="prompt-wrap">
+          <div class="prompt-box good-box">Kamu adalah copywriter untuk coffee shop indie di Bandung. Buat caption Instagram untuk foto latte art minimalis dengan nuansa pagi hari yang tenang. Gaya bahasa: hangat, tidak terlalu formal, sedikit puitis. Panjang: 3–4 kalimat + 5 hashtag relevan. Jangan gunakan kata "aesthetic".<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+        <div class="comp-analysis"><strong>Mengapa lebih baik:</strong> Konteks jelas, role ditetapkan, format ditentukan, ada batasan spesifik, dan AI diundang untuk bertanya jika butuh info tambahan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAB 2 -->
+<section class="section" id="bab2">
+  <p class="section-eyebrow">Bab 2</p>
+  <h2 class="section-title">Anatomi Prompt — Formula C.R.A.F.T.Q</h2>
+  <div class="divider"></div>
+  <p class="section-lead">C.R.A.F.T.Q adalah kerangka enam elemen yang membuat prompt kamu lengkap, jelas, dan menghasilkan output yang konsisten setiap saat.</p>
+  <div class="craft-grid">
+    <div class="craft-card">
+      <div class="craft-card-letter" style="color:#5c4fd6;">C</div>
+      <div class="craft-card-title">Context</div>
+      <p>Latar belakang situasi. Siapa kamu? Untuk siapa konten ini? Apa tujuannya? Semakin relevan konteksnya, semakin tepat sasaran outputnya.</p>
+    </div>
+    <div class="craft-card">
+      <div class="craft-card-letter" style="color:#0e6e6e;">R</div>
+      <div class="craft-card-title">Role</div>
+      <p>Minta AI berperan sebagai seseorang. "Kamu adalah senior copywriter", "Bertindak sebagai editor profesional", atau "Jadilah konsultan bisnis berpengalaman 10 tahun."</p>
+    </div>
+    <div class="craft-card">
+      <div class="craft-card-letter" style="color:#c24a2a;">A</div>
+      <div class="craft-card-title">Action</div>
+      <p>Tugas yang spesifik dan berorientasi hasil. Gunakan kata kerja aktif: "Tulis", "Analisis", "Buat daftar", "Ubah", "Ringkas". Hindari kata ambigu seperti "bantu".</p>
+    </div>
+    <div class="craft-card">
+      <div class="craft-card-letter" style="color:#956010;">F</div>
+      <div class="craft-card-title">Format</div>
+      <p>Bentuk output yang kamu inginkan. Panjang, struktur (poin/paragraf/tabel), bahasa, jumlah variasi, apakah pakai heading atau tidak, dan sebagainya.</p>
+    </div>
+    <div class="craft-card">
+      <div class="craft-card-letter" style="color:#1a7a52;">T</div>
+      <div class="craft-card-title">Tone</div>
+      <p>Nada dan gaya bahasa. Formal atau santai? Serius atau humoris? Akademis atau conversational? Beri contoh jika perlu: "seperti gaya tulisan Raditya Dika".</p>
+    </div>
+    <div class="craft-card q-card">
+      <div class="craft-card-letter">Q</div>
+      <div class="craft-card-title">Question</div>
+      <p>Tutup selalu promptmu dengan: <em>"Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?"</em> — ini membalik peran sehingga AI aktif mencari informasi yang kurang, bukan menebak-nebak.</p>
+    </div>
+  </div>
+  <h3>Mengapa Q itu penting?</h3>
+  <div class="mindset-card">
+    <p>Tanpa Q, AI akan mengisi sendiri informasi yang tidak kamu berikan — dan seringkali tebakannya meleset. Dengan Q, AI akan bertanya dulu hal-hal krusial yang dibutuhkan sebelum mengerjakan tugas. Hasilnya jauh lebih presisi tanpa perlu revisi berkali-kali.</p>
+  </div>
+  <h3>Contoh penerapan C.R.A.F.T.Q</h3>
+  <div class="comparison">
+    <div class="comparison-header">Perbandingan — Email penawaran produk</div>
+    <div class="comparison-body">
+      <div class="comp-side">
+        <span class="comp-label bad">Tanpa C.R.A.F.T.Q</span>
+        <div class="prompt-box bad-box">Tulis email untuk menjual produk skincare saya.</div>
+        <div class="comp-analysis"><strong>Tidak ada:</strong> konteks produk, siapa penerimanya, format email, atau nada yang diinginkan.</div>
+      </div>
+      <div class="comp-side">
+        <span class="comp-label good">Dengan C.R.A.F.T.Q</span>
+        <div class="prompt-wrap">
+          <div class="prompt-box good-box">[C] Aku punya brand skincare lokal untuk wanita 25–35 tahun. Produk: serum vitamin C Rp 189.000.<br>[R] Kamu adalah email copywriter spesialis e-commerce.<br>[A] Tulis email penawaran untuk pelanggan lama yang belum beli 3 bulan.<br>[F] Struktur: subject line + opening + body 3 paragraf + CTA. Maks 200 kata.<br>[T] Hangat, personal, sedikit urgensi tapi tidak memaksa.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+        <div class="comp-analysis"><strong>Hasilnya:</strong> Email yang langsung bisa dikirim — tone sesuai brand, panjang tepat, strukturnya sudah siap pakai.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAB 3 -->
+<section class="section" id="bab3">
+  <p class="section-eyebrow">Bab 3</p>
+  <h2 class="section-title">Teknik Lanjutan untuk Output Presisi</h2>
+  <div class="divider"></div>
+  <p class="section-lead">Setelah menguasai C.R.A.F.T.Q, empat teknik ini akan membawa kualitas output kamu ke level berikutnya.</p>
+  <div class="technique-grid">
+    <div class="technique-card">
+      <div class="technique-icon" style="background:#eeecfd;">🧠</div>
+      <h4>Chain-of-Thought</h4>
+      <p>Minta AI berpikir bertahap sebelum menjawab. Tambahkan: <em>"Pikirkan langkah demi langkah sebelum menjawab."</em> Cocok untuk analisis, soal logika, atau keputusan kompleks.</p>
+    </div>
+    <div class="technique-card">
+      <div class="technique-icon" style="background:#e3f5f5;">📋</div>
+      <h4>Few-Shot Prompting</h4>
+      <p>Berikan 1–3 contoh di dalam prompt sebelum meminta AI mengerjakan tugasnya. Cara tercepat menunjukkan apa yang kamu inginkan tanpa banyak menjelaskan.</p>
+    </div>
+    <div class="technique-card">
+      <div class="technique-icon" style="background:#fdeaea;">🚫</div>
+      <h4>Negative Prompting</h4>
+      <p>Tegaskan secara eksplisit apa yang <em>tidak</em> kamu inginkan dalam output. Ini menghilangkan elemen yang tidak diinginkan tanpa perlu revisi berulang.</p>
+    </div>
+    <div class="technique-card">
+      <div class="technique-icon" style="background:#fdf3e0;">⚙️</div>
+      <h4>Constraint Prompting</h4>
+      <p>Berikan batasan konkret: jumlah kata, jumlah poin, panjang kalimat, atau struktur spesifik. Batasan memaksa AI fokus dan menghilangkan output yang bertele-tele.</p>
+    </div>
+  </div>
+
+  <h3>Negative prompting — mengapa wajib dipakai</h3>
+  <p>Tanpa negative prompt, AI akan mengisi "celah" dengan asumsinya sendiri — yang sering tidak sesuai. Negative prompt bukan berarti kamu harus selalu melarang sesuatu, tapi tentang memberi batas yang jelas agar output tidak keluar jalur.</p>
+  <div class="comparison">
+    <div class="comparison-header">Perbandingan — Membuat bio Instagram profesional</div>
+    <div class="comparison-body">
+      <div class="comp-side">
+        <span class="comp-label bad">Tanpa Negative Prompt</span>
+        <div class="prompt-box bad-box">Buatkan bio Instagram yang profesional untuk saya sebagai content creator.</div>
+        <div class="comp-analysis"><strong>Risikonya:</strong> AI mungkin menggunakan kata-kata klise seperti "passionate", "storyteller", emoji berlebihan, atau format yang tidak sesuai karakter akun kamu.</div>
+      </div>
+      <div class="comp-side">
+        <span class="comp-label good">Dengan Negative Prompt</span>
+        <div class="prompt-wrap">
+          <div class="prompt-box good-box">Buatkan bio Instagram untuk saya, content creator edukasi bisnis online. Audiens: pengusaha muda 22–32 tahun. Maks 150 karakter. Sertakan: niche + bukti kredibilitas + CTA singkat.<br><br>JANGAN: gunakan kata "passionate" atau "enthusiast", jangan pakai terlalu banyak emoji, jangan terlalu formal seperti CV, jangan gunakan tanda titik di akhir kalimat.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+        <div class="comp-analysis"><strong>Hasilnya:</strong> Bio yang terasa asli dan sesuai karakter — karena kamu sudah menutup semua jalan yang tidak ingin AI tempuh.</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Few-shot prompting dalam aksi</h3>
+  <div class="comparison">
+    <div class="comparison-header">Perbandingan — Membuat judul artikel</div>
+    <div class="comparison-body">
+      <div class="comp-side">
+        <span class="comp-label bad">Tanpa Contoh</span>
+        <div class="prompt-box bad-box">Buat 5 judul artikel tentang produktivitas.</div>
+        <div class="comp-analysis"><strong>Masalahnya:</strong> AI tidak tahu gaya judul yang kamu suka — apakah clickbait, akademis, minimalis, atau bernada tertentu.</div>
+      </div>
+      <div class="comp-side">
+        <span class="comp-label good">Dengan Few-Shot</span>
+        <div class="prompt-wrap">
+          <div class="prompt-box good-box">Buat 5 judul artikel tentang produktivitas dengan gaya seperti contoh ini:<br><br>✦ "Kamu Tidak Malas — Sistemmu yang Rusak"<br>✦ "Berhenti Buat To-Do List, Coba Ini"<br>✦ "Cara Kerja 4 Jam Tapi Hasil Setara 8 Jam"<br><br>Gaya: langsung, sedikit provokatif, berbicara ke pembaca.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+        <div class="comp-analysis"><strong>Hasilnya:</strong> AI langsung menangkap pola gaya, tone, dan struktur judul yang kamu sukai.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAB 4 -->
+<section class="section" id="bab4">
+  <p class="section-eyebrow">Bab 4</p>
+  <h2 class="section-title">Prompt untuk Berbagai Kebutuhan</h2>
+  <div class="divider"></div>
+  <p class="section-lead">Formula yang sama bekerja di semua konteks — tapi setiap bidang punya elemen kunci yang berbeda. Pilih kategori yang relevan untukmu.</p>
+
+  <div class="tabs" id="tabs-bab4">
+    <button class="tab-btn active" onclick="showTab('kreator4')">🎨 Kreator Konten</button>
+    <button class="tab-btn" onclick="showTab('konten4')">✍️ Menulis</button>
+    <button class="tab-btn" onclick="showTab('riset4')">🔍 Riset</button>
+    <button class="tab-btn" onclick="showTab('coding4')">💻 Coding</button>
+    <button class="tab-btn" onclick="showTab('gambar4')">🖼️ Editing Gambar</button>
+    <button class="tab-btn" onclick="showTab('video4')">🎬 Editing Video</button>
+    <button class="tab-btn" onclick="showTab('karyawan4')">💼 Karyawan</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-kreator4">
+    <h3 style="margin-top:0;">Prompt untuk kreator konten</h3>
+    <p>Kunci konten yang kuat: berikan konteks platform, audiens, dan tujuan konten dengan jelas.</p>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Caption produk</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Buat caption untuk foto baju baru saya.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> Tidak ada info brand, target pembeli, platform, atau gaya.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Kamu adalah social media manager untuk brand fashion streetwear lokal, target anak muda 18–25 tahun. Tulis caption Instagram untuk foto oversized hoodie warna sage green, suasana outdoor perkotaan. Gaya: chill, autentik, tidak terlalu promosi. 2–3 kalimat + 6 hashtag niche. Bahasa: campuran Indonesia dan Inggris ringan. JANGAN: gunakan kata "aesthetic" atau "vibe".<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Caption yang terasa asli dan sesuai karakter brand.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-konten4">
+    <h3 style="margin-top:0;">Prompt untuk menulis konten</h3>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Artikel blog</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Tulis artikel tentang tips produktivitas.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> Tidak ada target pembaca, panjang, gaya, atau sudut pandang unik.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Kamu adalah penulis blog produktivitas. Tulis artikel untuk freelancer Indonesia usia 22–30 tahun. Topik: cara fokus kerja dari rumah tanpa gangguan. Panjang: 700–800 kata. Struktur: hook masalah + 4 tips praktis dengan sub-judul + penutup. Tone: santai, relatable, seperti ngobrol dengan teman. JANGAN: mulai dengan definisi atau pertanyaan retoris klise.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Artikel yang terasa ditulis untuk pembaca tertentu, bukan siapa saja.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-riset4">
+    <h3 style="margin-top:0;">Prompt untuk riset dan analisis</h3>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Analisis kompetitor</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Analisis kompetitor bisnis kopi saya.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> AI tidak tahu kompetitor siapa atau aspek apa yang mau dianalisis.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Kamu adalah business analyst. Aku punya coffee shop indie di Makassar, target kelas menengah usia 22–35. Bandingkan 3 aspek kompetitor lokal (Kopi Janji Jiwa, Fore, Kulo): harga menu, strategi media sosial, dan positioning. Sajikan dalam tabel perbandingan + ringkasan 1 paragraf peluang yang bisa aku ambil.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Analisis yang langsung bisa dipakai untuk perencanaan strategi.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-coding4">
+    <h3 style="margin-top:0;">Prompt untuk coding dan debugging</h3>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Debug kode</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Kode saya tidak berjalan. Tolong perbaiki.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> Tidak ada kode, bahasa, atau error message. AI tidak bisa membantu.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Kamu adalah senior Python developer. Kode ini harusnya mengambil data dari API dan menyimpannya ke CSV, tapi muncul error: "KeyError: 'data'". Ini kodenya: [paste kode]. Tolong: (1) jelaskan penyebab error, (2) perbaiki kodenya, (3) tambahkan error handling yang baik. JANGAN ubah struktur fungsi utama.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Penjelasan yang mendidik + kode yang sudah diperbaiki + lebih robust.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-gambar4">
+    <h3 style="margin-top:0;">Prompt untuk editing gambar</h3>
+    <div class="info-box teal"><p>🎨 <strong>Elemen penting:</strong> Subjek utama · Gaya artistik · Pencahayaan · Palet warna · Sudut kamera · Mood · Hal yang TIDAK diinginkan</p></div>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Generate foto produk skincare</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Foto produk skincare yang bagus.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> "Bagus" tidak berarti apa-apa bagi AI. Tidak ada info produk, gaya, atau mood.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Product photography, glass serum bottle with dropper, minimalist white marble surface, soft natural window light from left, pale sage green accent cloth, macro shot, shallow depth of field, clean editorial style, luxury skincare aesthetic, ultra sharp, 8K, --ar 4:5 --style raw --no harsh shadows, clutter, text<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Foto produk yang langsung terasa profesional dan konsisten dengan brand.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-video4">
+    <h3 style="margin-top:0;">Prompt untuk editing video</h3>
+    <div class="info-box amber"><p>🎬 <strong>Elemen penting:</strong> Subjek & aksi · Gerakan kamera · Durasi · Gaya · Warna/filter · Transisi · Kecepatan</p></div>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Generate video Reels</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Buat video kopi yang aesthetic untuk Instagram.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> Tidak ada info durasi, gerakan, style, atau konten spesifik.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Generate video 10 detik untuk Instagram Reels: latte art dituang ke cangkir putih dalam slow motion, overhead shot, warm golden hour lighting, wooden cafe table, steam mengepul, color grade warm brown-cream, gerakan kamera slight zoom out perlahan, tidak ada teks, cinematic feel, aspect ratio 9:16.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Video yang langsung bisa diposting — setiap elemen visual sudah ditentukan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-karyawan4">
+    <h3 style="margin-top:0;">Prompt untuk karyawan</h3>
+    <p>AI bisa membantu membuat dokumen kerja, surat formal, dan komunikasi profesional — asalkan konteks dan tujuannya jelas.</p>
+    <div class="comparison">
+      <div class="comparison-header">Perbandingan — Surat cuti</div>
+      <div class="comparison-body">
+        <div class="comp-side">
+          <span class="comp-label bad">Tidak Detail</span>
+          <div class="prompt-box bad-box">Buatkan surat cuti untuk saya.</div>
+          <div class="comp-analysis"><strong>Masalah:</strong> Tidak ada info alasan cuti, durasi, nama, atau format yang diinginkan perusahaan.</div>
+        </div>
+        <div class="comp-side">
+          <span class="comp-label good">Detail</span>
+          <div class="prompt-wrap">
+            <div class="prompt-box good-box">Buatkan surat izin cuti resmi untuk keperluan keluarga. Data: Nama: Andi Prasetyo, Jabatan: Staff Marketing, Divisi: Marketing, Atasan langsung: Bapak Rudi Santoso. Tanggal cuti: 20–22 Januari 2025 (3 hari kerja). Alasan: ada anggota keluarga yang dirawat di rumah sakit. Tone: formal, sopan. Format surat resmi dengan kop perusahaan kosong. JANGAN terlalu panjang — maks 1 halaman.<span class="q-line">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+            <div class="prompt-actions">
+              <button class="btn-copy" onclick="copyPrompt(this, this.closest('.comp-side').querySelector('.prompt-box').innerText)">📋 Salin prompt</button>
+              <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.comp-side').querySelector('.prompt-box').innerText)">⚡ Coba di ChatGPT</button>
+              <button class="btn-gemini" onclick="openGemini(this.closest('.comp-side').querySelector('.prompt-box').innerText)">✦ Coba di Gemini</button>
+            </div>
+          </div>
+          <div class="comp-analysis"><strong>Hasilnya:</strong> Surat yang langsung bisa dicetak dan ditandatangani — tidak perlu banyak editing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAB 5 -->
+<section class="section" id="bab5">
+  <p class="section-eyebrow">Bab 5</p>
+  <h2 class="section-title">Iterasi & Penyempurnaan Prompt</h2>
+  <div class="divider"></div>
+  <p class="section-lead">Prompt yang sempurna jarang lahir pertama kali. Yang membedakan pengguna mahir adalah kemampuan mereka membaca output dan memperbaiki arah dengan cepat.</p>
+  <h3>Cara mendiagnosis output yang meleset</h3>
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content"><h4>Output terlalu umum / generik</h4><p>Tambahkan lebih banyak konteks spesifik — nama brand, audiens target, atau contoh nyata.</p></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content"><h4>Output terlalu panjang atau pendek</h4><p>Tentukan batas kata/kalimat yang eksplisit. "Maks 150 kata" atau "minimal 5 poin dengan penjelasan masing-masing."</p></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content"><h4>Tone tidak sesuai</h4><p>Berikan referensi tone yang konkret. "Seperti percakapan teman ke teman" atau "formal seperti proposal bank."</p></div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content"><h4>Tidak menjawab inti pertanyaan</h4><p>Perkecil scope dengan kata "hanya", "fokus pada", atau "jangan bahas selain..."</p></div>
+    </div>
+  </div>
+  <h3>Teknik follow-up yang efektif</h3>
+  <div style="display:grid;gap:10px;margin-top:1rem;">
+    <div class="prompt-box" style="font-size:14px;">"Bagus, tapi jadikan tonenya lebih santai dan kurangi penggunaan kata formal."</div>
+    <div class="prompt-box" style="font-size:14px;">"Versi ini terlalu panjang. Pangkas menjadi maks 100 kata tanpa mengurangi poin utamanya."</div>
+    <div class="prompt-box" style="font-size:14px;">"Berikan 3 versi alternatif dengan pendekatan berbeda: satu emosional, satu rasional, satu humor."</div>
+    <div class="prompt-box" style="font-size:14px;">"Poin ke-2 dan ke-4 sudah tepat. Pertahankan gaya itu, tulis ulang poin lainnya agar konsisten."</div>
+  </div>
+</section>
+
+<!-- BAB 6 -->
+<section class="section" id="bab6">
+  <p class="section-eyebrow">Bab 6</p>
+  <h2 class="section-title">50 Template Prompt Siap Pakai</h2>
+  <div class="divider"></div>
+  <p class="section-lead">Ganti bagian <span style="background:var(--amber-light);color:var(--amber);padding:2px 6px;border-radius:4px;font-style:italic;">miring kuning</span> dengan informasi milikmu. Formula Q sudah disertakan di setiap template.</p>
+
+  <div class="tabs" id="tabs-bab6">
+    <button class="tab-btn active" onclick="showTab2('kreator6')">🎨 Kreator Konten</button>
+    <button class="tab-btn" onclick="showTab2('bisnis6')">💼 Bisnis & Marketing</button>
+    <button class="tab-btn" onclick="showTab2('produktif6')">📚 Produktivitas</button>
+    <button class="tab-btn" onclick="showTab2('karyawan6')">🏢 Karyawan</button>
+  </div>
+
+  <!-- KREATOR KONTEN -->
+  <div class="tab-panel active" id="tab-kreator6">
+    <div class="template-grid">
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Storytelling</span>
+        <h4>Konten gaya storytelling dari draft kamu sendiri</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah content writer spesialis storytelling untuk media sosial. Olah draft/konsep/naskah yang aku tulis berikut ini menjadi konten dengan gaya storytelling yang kuat untuk platform <span class="var">Instagram/TikTok/LinkedIn</span>. Pertahankan sudut pandang dan suara asli saya — jangan ubah fakta atau pengalaman, hanya perkuat struktur narasinya. Gaya: <span class="var">personal & relatable / inspiratif / edukatif</span>. Panjang output: <span class="var">150–200 kata / 60 detik script</span>.<br><br>JANGAN: ubah pesan utama saya, tambahkan fakta yang tidak ada di draft, atau buat terasa seperti tulisan AI.<br><br>📝 INI DRAFT/KONSEP/NASKAH VERSI SAYA:<br>[<span class="var">Paste draft atau konsep kamu di sini</span>]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Carousel</span>
+        <h4>Konsep carousel lengkap per slide</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah content strategist. Buat konsep carousel Instagram tentang topik: <span class="var">topik</span>. Jumlah slide: <span class="var">7–10</span>. Target audiens: <span class="var">profil audiens</span>.<br><br>Untuk SETIAP slide, berikan:<br>• Nomor slide<br>• Judul/headline slide (maks 6 kata)<br>• Isi teks slide (maks 25 kata)<br>• Saran visual/ilustrasi yang cocok<br><br>Struktur: Slide 1 = hook kuat yang bikin orang swipe, Slide 2–(n-1) = isi poin, Slide terakhir = CTA + ajakan simpan/share.<br><br>Tone: <span class="var">edukatif santai / inspiratif / profesional</span>. JANGAN: buat slide terlalu penuh teks.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Brief Script</span>
+        <h4>Brief script video lengkap</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah video scriptwriter. Buat brief script video untuk konten <span class="var">TikTok/Reels/YouTube Shorts</span> tentang topik: <span class="var">topik</span>. Durasi target: <span class="var">30 / 60 / 90 detik</span>.<br><br>Format brief script:<br>• HOOK (0–3 detik): kalimat pembuka yang menghentikan scroll<br>• PROBLEM/CONTEXT (3–10 detik): bangun relevansi dengan penonton<br>• ISI/VALUE (10–(n) detik): poin utama, dibagi per segmen dengan timestamp<br>• CTA (5 detik terakhir): ajakan spesifik<br><br>Sertakan juga: saran visual/B-roll tiap segmen, tone bicara (<span class="var">energik/santai/serius</span>), dan 3 pilihan hook alternatif.<br><br>Target penonton: <span class="var">profil audiens</span>. JANGAN: buat script yang terlalu kaku atau terasa dibaca.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Hook</span>
+        <h4>10 variasi hook video TikTok/Reels</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat 10 variasi kalimat hook pembuka (3–7 kata) untuk video tentang: <span class="var">topik</span>. Target audiens: <span class="var">profil</span>. Variasikan teknik: pertanyaan provokatif, fakta mengejutkan, pernyataan kontra-intuitif, storytelling opener, dan pattern interrupt. Pilihkan 3 terkuat beserta alasannya. JANGAN: mulai dengan "Tahukah kamu" atau "Pernahkah kamu".<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Kalender</span>
+        <h4>Kalender konten 1 bulan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat kalender konten Instagram untuk <span class="var">bulan</span>, akun niche: <span class="var">topik akun</span>. Target audiens: <span class="var">profil</span>. Frekuensi: <span class="var">X kali seminggu</span>. Campurkan: 40% edukatif, 30% entertaining, 20% personal/BTS, 10% promosi. Format: tabel per minggu — kolom: tanggal, format (Reels/carousel/story), topik, hook pembuka.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Gambar AI</span>
+        <h4>Prompt generate foto produk AI</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Product photography, <span class="var">deskripsi produk</span>, placed on <span class="var">permukaan/latar</span>, <span class="var">jenis pencahayaan</span> lighting, <span class="var">warna aksen</span> color accent, <span class="var">macro/wide/overhead</span> shot, <span class="var">gaya visual</span> aesthetic, clean background, ultra sharp, 8K, --ar <span class="var">4:5</span> --style raw --no clutter, harsh shadows, text, watermark<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Video AI</span>
+        <h4>Prompt generate video pendek AI</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Generate <span class="var">durasi</span> second video: <span class="var">subjek dan aksi</span>, <span class="var">overhead/close-up/wide</span> shot, <span class="var">pencahayaan</span> lighting, color grade: <span class="var">warm/cool/neutral</span>, camera movement: <span class="var">slow zoom/pan/static</span>, <span class="var">slow motion/normal</span>, no text overlay, <span class="var">mood</span> feel, aspect ratio <span class="var">9:16</span><span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Brand Voice</span>
+        <h4>Definisikan brand voice</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu definisikan brand voice untuk akun/bisnis saya. Info: <span class="var">deskripsi bisnis, nilai, audiens</span>. Tentukan: 3 kata sifat brand voice + penjelasan tiap kata + contoh kalimat yang SESUAI + contoh yang TIDAK sesuai. Format: panduan yang bisa langsung dipakai tim konten.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Edit Video</span>
+        <h4>Arah edit video traveling</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat edit plan untuk video traveling ke <span class="var">destinasi</span>. Footage yang aku punya: <span class="var">list klip</span>. Platform: <span class="var">TikTok/Reels</span>. Durasi target: <span class="var">X detik</span>. Style referensi: <span class="var">nama kreator/vibe</span>. Output: urutan klip, timing transisi, color grade, pilihan musik, teks opening.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Kolaborasi</span>
+        <h4>DM pitch kolaborasi ke kreator lain</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis DM Instagram untuk mengajak kolaborasi kepada kreator <span class="var">tipe kreator</span> dengan audiens <span class="var">profil audiens mereka</span>. Saya: <span class="var">deskripsi singkat diri kamu</span>. Ide kolaborasi: <span class="var">ide konkret</span>. Tone: genuine, tidak copy-paste, tunjukkan aku sudah kenal konten mereka. Maks 5 kalimat — langsung ke inti.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">SEO</span>
+        <h4>Artikel blog SEO-friendly</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis artikel blog SEO-friendly tentang: <span class="var">topik</span>. Keyword utama: <span class="var">keyword</span>. Target pembaca: <span class="var">profil</span>. Panjang: <span class="var">800–1000</span> kata. Struktur: H1 + intro (permasalahan) + 3–4 H2 + kesimpulan + 1 pertanyaan engagement. Masukkan keyword secara natural. JANGAN: keyword stuffing atau pembukaan klise.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Caption</span>
+        <h4>Caption Instagram produk/jasa</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat 3 variasi caption Instagram untuk <span class="var">produk/jasa</span>. Target: <span class="var">profil audiens</span>. Satu caption emosional, satu informatif, satu dengan humor ringan. Tiap caption maks 4 kalimat + 5 hashtag relevan. JANGAN: gunakan kata <span class="var">kata yang tidak ingin dipakai</span>.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BISNIS -->
+  <div class="tab-panel" id="tab-bisnis6">
+    <div class="template-grid">
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Email</span>
+        <h4>Cold email outreach ke klien baru</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah sales copywriter B2B. Tulis cold email ke <span class="var">nama perusahaan target</span> di bidang <span class="var">industri mereka</span>. Produk/jasa: <span class="var">deskripsi singkat</span>. Tunjukkan manfaat konkret, bukan fitur. Struktur: subject + opening personal + value proposition + soft CTA. Maks 120 kata. Tone: profesional tapi tidak kaku.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Iklan</span>
+        <h4>Script iklan Meta Ads 30 detik</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat script iklan video 30 detik untuk Meta Ads. Produk: <span class="var">nama & deskripsi</span>. Target: <span class="var">profil audiens</span>. Struktur: hook 3 detik + masalah 7 detik + solusi 15 detik + CTA 5 detik. JANGAN: gunakan opening "Apakah kamu pernah..." atau klaim berlebihan.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Deskripsi</span>
+        <h4>Deskripsi produk untuk marketplace</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis deskripsi produk untuk <span class="var">nama produk</span> di Tokopedia/Shopee. Spesifikasi: <span class="var">detail produk</span>. Keunggulan: <span class="var">keunggulan vs kompetitor</span>. Struktur: headline + 3 poin keunggulan + spesifikasi + garansi. Panjang: 100–150 kata. JANGAN: klaim yang tidak bisa dibuktikan.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Strategi</span>
+        <h4>Analisis SWOT bisnis</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah business consultant. Buat analisis SWOT untuk bisnis: <span class="var">deskripsi bisnis, lokasi, target pasar</span>. Kompetitor: <span class="var">nama kompetitor</span>. Sajikan tabel SWOT + 3 rekomendasi strategi berdasarkan analisis.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Riset</span>
+        <h4>Riset kompetitor cepat</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bandingkan <span class="var">kompetitor A, B, C</span> dalam bisnis <span class="var">jenis bisnis</span> berdasarkan: positioning, harga, kekuatan konten sosial media, dan celah yang belum mereka manfaatkan. Tabel perbandingan + 1 paragraf peluang untuk bisnis saya yang fokus pada <span class="var">keunggulan kamu</span>.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Proposal</span>
+        <h4>Proposal kerjasama brand</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat kerangka proposal kerjasama untuk <span class="var">nama brand</span>. Saya: <span class="var">deskripsi diri/bisnis</span>. Bentuk kerjasama: <span class="var">jenis kerjasama</span>. Struktur: latar belakang + profil saya + value yang ditawarkan + mekanisme + proyeksi hasil + CTA. Panjang: 300–400 kata.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeaea;color:#a32d2d;">Negosiasi</span>
+        <h4>Email negosiasi harga ke supplier</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis email negosiasi harga ke supplier <span class="var">nama supplier</span> untuk <span class="var">produk/bahan</span> sebanyak <span class="var">jumlah</span>. Harga mereka: <span class="var">Rp xxx</span>, target saya: <span class="var">Rp xxx</span>. Tone: profesional, hormat, tidak agresif. Sertakan alasan logis dan tawaran win-win.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Customer</span>
+        <h4>Respon keluhan pelanggan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis respon profesional untuk keluhan: "<span class="var">isi keluhan</span>". Situasi: <span class="var">apa yang terjadi</span>. Tone: empatik, bertanggung jawab, tidak defensif. Sertakan: pengakuan perasaan + penjelasan singkat + solusi konkret + apresiasi feedback. Maks 5 kalimat.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Newsletter</span>
+        <h4>Email newsletter mingguan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah editor newsletter untuk brand <span class="var">nama brand</span>. Tulis newsletter minggu ini tema: <span class="var">topik</span>. Struktur: subject line + intro hangat (2 kalimat) + insight utama (200 kata) + 1 tips actionable + penutup + CTA. Tone: <span class="var">gaya brand</span>.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Presentasi</span>
+        <h4>Kerangka presentasi dari data</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat kerangka presentasi <span class="var">X</span> slide untuk topik: <span class="var">topik/data</span>. Audiens: <span class="var">siapa</span>. Tujuan: <span class="var">inform/persuade/laporan</span>. Untuk tiap slide: judul + 3 poin utama + 1 visual yang disarankan. Tone: <span class="var">formal/santai</span>.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Konten Promo</span>
+        <h4>Konten peluncuran produk baru</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat 3 variasi caption Instagram untuk peluncuran <span class="var">nama produk</span> — harga <span class="var">Rp xxx</span>, manfaat utama: <span class="var">3 manfaat</span>. Target: <span class="var">profil audiens</span>. Satu caption emosional, satu informatif, satu dengan urgensi. Tiap caption maks 4 kalimat + 5 hashtag.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Ide Bisnis</span>
+        <h4>Brainstorming ide konten marketing</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah content strategist. Aku punya <span class="var">jenis bisnis</span> di <span class="var">platform</span>. Buat 10 ide konten bulan ini — bagi: 3 edukatif, 3 entertainment/relatable, 2 behind-the-scene, 2 promo halus. Sertakan hook pembuka untuk masing-masing.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRODUKTIVITAS -->
+  <div class="tab-panel" id="tab-produktif6">
+    <div class="template-grid">
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Ringkas</span>
+        <h4>Ringkas dokumen panjang</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Ringkas dokumen berikut dalam maks <span class="var">150</span> kata. Pertahankan: poin utama, angka penting, dan kesimpulan. Format: 3–5 poin bullet + 1 kalimat kesimpulan eksekutif. JANGAN: hapus data atau angka kunci. [Paste dokumen di sini]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Belajar</span>
+        <h4>Rencana belajar 30 hari</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat rencana belajar 30 hari untuk mempelajari <span class="var">topik/skill</span> dari level <span class="var">pemula/menengah</span>. Waktu tersedia: <span class="var">X jam per hari</span>. Sumber yang sudah aku punya: <span class="var">sebutkan</span>. Format: tabel mingguan (4 minggu) dengan milestone per minggu + rekomendasi sumber tambahan gratis.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Meeting</span>
+        <h4>Ringkas notulensi meeting</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Ubah notulensi berikut menjadi ringkasan eksekutif. Output: (1) Keputusan yang diambil, (2) Action items + penanggung jawab + deadline, (3) Poin yang perlu diklarifikasi. Format: bullet points, maks 200 kata. [Paste notulensi di sini]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Terjemah</span>
+        <h4>Terjemah dengan nuansa tepat</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Terjemahkan teks berikut dari <span class="var">bahasa asal</span> ke <span class="var">bahasa target</span>. Prioritaskan makna dan nuansa, bukan kata per kata. Tone teks asli: <span class="var">formal/santai/teknis</span> — pertahankan tone yang sama. [Paste teks di sini]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Feedback</span>
+        <h4>Minta feedback kritis atas tulisan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Berikan feedback kritis atas tulisan saya. Evaluasi: (1) Kejelasan argumen, (2) Struktur dan alur, (3) Tone, (4) Kekuatan bukti/contoh. Format: tiap aspek — nilai 1–5 + komentar spesifik + saran perbaikan. Jangan hanya memuji. [Paste tulisan di sini]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Prioritas</span>
+        <h4>Prioritaskan task list</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu prioritaskan task berikut dengan matriks Eisenhower. Konteks: aku adalah <span class="var">profesi/peran</span>, deadline terdekat: <span class="var">tanggal</span>. Daftar task: <span class="var">paste task list</span>. Output: kategorikan ke 4 kuadran + urutan pengerjaan hari ini.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeaea;color:#a32d2d;">Konsep</span>
+        <h4>Jelaskan konsep sulit dengan sederhana</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Jelaskan konsep <span class="var">nama konsep</span> kepada saya yang berlatar belakang <span class="var">profesi/bidang</span>. Gunakan analogi dari dunia <span class="var">sesuatu yang kamu kenal</span>. Struktur: definisi 1 kalimat + analogi + 3 poin penjelasan + contoh nyata. Hindari jargon teknis.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Keputusan</span>
+        <h4>Bantu ambil keputusan sulit</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu analisis keputusan ini secara objektif: <span class="var">deskripsi keputusan</span>. Opsi: <span class="var">A vs B</span>. Faktor yang aku pertimbangkan: <span class="var">faktor-faktor</span>. Analisis: pro dan kontra tiap opsi + risiko tersembunyi + pertanyaan yang harus aku jawab sendiri. JANGAN langsung rekomendasikan — bantu aku berpikir lebih jernih.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">CV</span>
+        <h4>Perbaiki deskripsi pengalaman kerja</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Perbaiki deskripsi pengalaman kerja berikut agar lebih impact-focused untuk lamaran di bidang <span class="var">bidang yang dituju</span>. Ubah dari task-based menjadi result-oriented. Gunakan kata kerja kuat (achieved, led, improved). Pertahankan kejujuran. [Paste deskripsi lama]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Brainstorm</span>
+        <h4>Brainstorming solusi masalah</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu brainstorm solusi untuk masalah ini: <span class="var">deskripsi masalah</span>. Konteks: <span class="var">situasi dan batasan yang ada</span>. Hasilkan minimal 8 ide solusi — campurkan: solusi konvensional, solusi kreatif, dan solusi yang mungkin terdengar gila tapi bisa jadi inovatif. Jangan filter dulu, baru nanti aku yang evaluasi.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Laporan</span>
+        <h4>Buat laporan dari data mentah</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Kamu adalah data analyst. Ubah data mentah berikut menjadi laporan ringkas yang bisa dibaca non-teknis. Sertakan: temuan utama (3–5 poin), tren yang terlihat, dan 2–3 rekomendasi actionable. Format: poin-poin dengan sub-judul. Panjang maks: 300 kata. [Paste data di sini]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- KARYAWAN -->
+  <div class="tab-panel" id="tab-karyawan6">
+    <div class="template-grid">
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Surat Formal</span>
+        <h4>Surat cuti (sakit / keluarga / melahirkan)</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buatkan surat izin cuti resmi. Data: Nama: <span class="var">nama kamu</span>, Jabatan: <span class="var">jabatan</span>, Divisi: <span class="var">divisi</span>, Atasan: <span class="var">nama atasan</span>. Tanggal cuti: <span class="var">tanggal (X hari kerja)</span>. Alasan: <span class="var">sakit / keperluan keluarga / melahirkan</span>. Tone: formal, sopan. Format surat resmi dengan kop kosong. Maks 1 halaman.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeaea;color:#a32d2d;">Surat Formal</span>
+        <h4>Surat pengunduran diri</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buatkan surat pengunduran diri yang profesional. Data: Nama: <span class="var">nama</span>, Jabatan: <span class="var">jabatan</span>, Lama bekerja: <span class="var">X tahun</span>, Tanggal efektif resign: <span class="var">tanggal</span>. Alasan resign: <span class="var">alasan (sebutkan versi yang sopan)</span>. Tone: hangat, berterima kasih, tidak membakar jembatan. Sertakan apresiasi kepada perusahaan dan penawaran untuk membantu transisi.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Surat Formal</span>
+        <h4>Surat izin tidak masuk kerja</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buatkan surat izin tidak masuk kerja. Nama: <span class="var">nama</span>, Jabatan: <span class="var">jabatan</span>, Tanggal tidak masuk: <span class="var">tanggal</span>. Alasan: <span class="var">alasan</span>. Tone: singkat, formal, sopan. Maks setengah halaman. Sertakan pernyataan bahwa pekerjaan tetap akan diselesaikan.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Komunikasi Kerja</span>
+        <h4>Email penawaran ke klien / vendor</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis email penawaran profesional kepada <span class="var">nama klien/vendor</span> dari perusahaan <span class="var">nama perusahaan</span>. Penawaran: <span class="var">produk/jasa/harga</span>. Tujuan email: <span class="var">memperkenalkan / follow-up meeting / kirim proposal</span>. Tone: profesional, percaya diri, tidak memaksa. Sertakan CTA yang jelas di akhir.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Komunikasi Kerja</span>
+        <h4>Email follow-up setelah meeting</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis email follow-up setelah meeting dengan <span class="var">nama/perusahaan</span> pada tanggal <span class="var">tanggal</span>. Poin yang dibahas: <span class="var">ringkasan poin meeting</span>. Next steps yang disepakati: <span class="var">next steps</span>. Tone: profesional, ringkas, action-oriented. Maks 150 kata.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Komunikasi Kerja</span>
+        <h4>Email minta feedback dari atasan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Tulis email kepada atasan (<span class="var">nama atasan</span>) untuk meminta feedback atas pekerjaan/proyek: <span class="var">nama proyek/tugas</span> yang selesai pada <span class="var">tanggal</span>. Tone: rendah hati, inisiatif, profesional. Tunjukkan bahwa aku serius ingin berkembang, bukan sekadar formalitas.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Komunikasi Kerja</span>
+        <h4>Laporan kerja mingguan / bulanan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat laporan kerja <span class="var">mingguan/bulanan</span> berdasarkan aktivitas berikut: <span class="var">list aktivitas/pencapaian</span>. Format: (1) Highlight pencapaian utama, (2) Progres target, (3) Hambatan yang dihadapi, (4) Rencana minggu/bulan berikutnya. Tone: profesional, ringkas, data-driven. Maks 300 kata.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Karir</span>
+        <h4>Negosiasi gaji</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu aku menyiapkan skrip negosiasi gaji. Konteks: posisi yang dilamar/jabatan saat ini: <span class="var">posisi</span>, gaji yang ditawarkan: <span class="var">Rp xxx</span>, gaji yang aku targetkan: <span class="var">Rp xxx</span>, alasan kuat yang aku punya: <span class="var">pengalaman/prestasi/market rate</span>. Buat skrip percakapan yang percaya diri, tidak agresif, dan profesional.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Karir</span>
+        <h4>Persiapan wawancara kerja</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu aku bersiap untuk wawancara kerja posisi <span class="var">nama posisi</span> di perusahaan <span class="var">nama perusahaan</span> bidang <span class="var">industri</span>. Pengalamanku: <span class="var">ringkasan pengalaman relevan</span>. Buat: 10 pertanyaan wawancara yang kemungkinan besar ditanyakan + panduan jawaban STAR (Situation, Task, Action, Result) untuk masing-masing.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#eeecfd;color:#3c3489;">Karir</span>
+        <h4>Ajukan kenaikan jabatan / promosi</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu aku menyusun proposal atau skrip untuk meminta promosi jabatan kepada atasan. Konteks: jabatan saat ini: <span class="var">jabatan</span>, lama menjabat: <span class="var">X tahun</span>, pencapaian utama: <span class="var">list pencapaian</span>, jabatan yang diinginkan: <span class="var">jabatan target</span>. Tone: percaya diri, berbasis data, tidak terdengar meminta-minta.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdeee9;color:#c24a2a;">Karir</span>
+        <h4>Self-review performa diri sendiri</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Bantu aku menulis self-review performa untuk periode <span class="var">periode</span>. Pencapaian yang aku raih: <span class="var">list pencapaian</span>. Area yang masih perlu berkembang: <span class="var">area pengembangan</span>. Target periode berikutnya: <span class="var">target</span>. Tone: jujur, reflektif, growth-oriented. Format: narasi singkat per bagian, maks 400 kata total.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e8f5ee;color:#1a7a52;">Administrasi</span>
+        <h4>Notulensi rapat menjadi action plan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Ubah catatan rapat berikut menjadi notulensi resmi + action plan. Output: (1) Ringkasan agenda, (2) Keputusan yang diambil, (3) Action items — penanggung jawab + deadline, (4) Hal yang pending/perlu tindak lanjut. Format tabel untuk action items. [Paste catatan rapat]<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#fdf3e0;color:#956010;">Administrasi</span>
+        <h4>Proposal anggaran ke atasan</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat proposal pengajuan anggaran untuk <span class="var">nama kegiatan/kebutuhan</span>. Total anggaran yang diajukan: <span class="var">Rp xxx</span>. Rincian penggunaan: <span class="var">list item dan biaya</span>. Manfaat/hasil yang diharapkan: <span class="var">manfaat</span>. Format: ringkas, berbasis data, mudah disetujui. Sertakan justifikasi untuk setiap item besar.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="template-card">
+        <span class="template-tag" style="background:#e3f5f5;color:#0e6e6e;">Administrasi</span>
+        <h4>SOP sederhana untuk tim</h4>
+        <div class="prompt-wrap">
+          <div class="template-prompt">Buat SOP (Standard Operating Procedure) sederhana untuk proses: <span class="var">nama proses</span> di divisi <span class="var">divisi</span>. Tujuan SOP: <span class="var">tujuan</span>. Langkah-langkah yang aku tahu: <span class="var">langkah kasar yang kamu tahu</span>. Format: numbered steps yang jelas, sertakan siapa yang bertanggung jawab di tiap langkah, dan checklist di akhir. Bahasa: sederhana, bisa dipahami staf baru.<span class="q">Apakah ada yang ingin kamu tanyakan sebelum mengerjakan ini, agar hasilnya lebih detail dan tepat?</span></div>
+          <div class="prompt-actions">
+            <button class="btn-copy" onclick="copyPrompt(this,this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">📋 Salin prompt</button>
+            <button class="btn-chatgpt" onclick="openChatGPT(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">⚡ Coba di ChatGPT</button>
+            <button class="btn-gemini" onclick="openGemini(this.closest('.prompt-wrap').querySelector('.template-prompt').innerText)">✦ Coba di Gemini</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  <p><strong>Formula Prompt untuk Bereksperimen dengan AI dan Dapatkan Hasil Terbaik</strong></p>
+  <p style="margin-top:8px;">Dibuat dengan ❤️ · Semakin sering dipakai, semakin mahir kamu</p>
+
+  <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);">
+    <p style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:10px;text-transform:uppercase;letter-spacing:.1em;">Ikuti kami di Instagram</p>
+    <a href="https://www.instagram.com/kreatifia.ai_?igsh=OTQ3bGdxcWRreXp2" target="_blank" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);padding:10px 20px;border-radius:99px;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      <span style="color:white;font-weight:700;font-size:15px;">@kreatifia.ai</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+function copyPrompt(btn, text) {
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = '✓ Tersalin!';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = '📋 Salin prompt'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function openChatGPT(text) {
+  window.open('https://chatgpt.com/?q=' + encodeURIComponent(text), '_blank');
+}
+function openGemini(text) {
+  navigator.clipboard.writeText(text);
+  window.open('https://gemini.google.com/app?hl=id', '_blank');
+}
+
+var bab4panels = ['kreator4','konten4','riset4','coding4','gambar4','video4','karyawan4'];
+var bab6panels = ['kreator6','bisnis6','produktif6','karyawan6'];
+
+function showTab(id) {
+  bab4panels.forEach(function(p) {
+    var el = document.getElementById('tab-' + p);
+    if (el) el.classList.remove('active');
+  });
+  var t = document.getElementById('tab-' + id);
+  if (t) t.classList.add('active');
+  document.querySelectorAll('#tabs-bab4 .tab-btn').forEach(function(btn, i) {
+    btn.classList.remove('active');
+    if (bab4panels[i] === id) btn.classList.add('active');
+  });
+}
+
+function showTab2(id) {
+  bab6panels.forEach(function(p) {
+    var el = document.getElementById('tab-' + p);
+    if (el) el.classList.remove('active');
+  });
+  var t = document.getElementById('tab-' + id);
+  if (t) t.classList.add('active');
+  document.querySelectorAll('#tabs-bab6 .tab-btn').forEach(function(btn, i) {
+    btn.classList.remove('active');
+    if (bab6panels[i] === id) btn.classList.add('active');
+  });
+}
+</script>
+</body>
+</html>
